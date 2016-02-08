@@ -2,6 +2,9 @@ CC = clang
 FLAG = -Wall -g
 
 test: bin/list.test bin/darray.test
+	cd bin &&\
+	./list.test &&\
+	./darray.test
 
 bin/list.o: list.c list.h
 	$(CC) $(FLAG) -c list.c -o bin/list.o

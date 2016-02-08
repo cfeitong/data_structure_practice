@@ -10,7 +10,7 @@ static bool adjust_size(Darray *tar, int scale); // adjust to scale%
 static bool adjust_size(Darray *tar, int scale) { // adjust to scale%
   assert(scale >= 0);
 
-  Darray t;
+  Darray t = dainit();
   t.cap = scale * tar->cap / 100;
   t.arr = (int *) malloc(tar->cap * sizeof(int));
   if (t.arr == NULL) {
@@ -18,6 +18,7 @@ static bool adjust_size(Darray *tar, int scale) { // adjust to scale%
   }
   else {
     memcpy(t.arr, tar->arr, tar->size*sizeof(int));
+    t.size = tar->size;
     *tar = t;
     return true;
   }
@@ -26,8 +27,8 @@ static bool adjust_size(Darray *tar, int scale) { // adjust to scale%
 Darray dainit() {
   Darray res;
   res.size = 0;
-  res.cap = INIT_SIZE;
-  res.arr = (int *) malloc(INIT_SIZE*sizeof(int));
+  res.cap = DAINIT_SIZE;
+  res.arr = (int *) malloc(DAINIT_SIZE*sizeof(int));
   return res;
 }
 
@@ -45,19 +46,19 @@ bool dashrink(Darray *tar) {
   return false;
 }
 
-void adappendn(Darray *tar, int val) {
+void daappendn(Darray *tar, int val) {
   tar->size++;
-  dagrow(tar);
   tar->arr[tar->size-1] = val;
+  dagrow(tar);
 }
 
-void addeletr(Darray *tar, int from, int to) {
+void dadeleter(Darray *tar, int from, int to) {
   assert(0 <= from && from < tar->size);
   assert(0 <= to && to <= tar->size);
 
   int delta = to - from;
 
-  for (int i = from; i < to && i+delta < tar->size; i++) {
+  for (int i = from; i+delta < tar->size; i++) {
     tar->arr[i] = tar->arr[i+delta];
   }
 
@@ -66,9 +67,9 @@ void addeletr(Darray *tar, int from, int to) {
   dashrink(tar);
 }
 
-int addeletn(Darray *tar, int n) {
+int dadeleten(Darray *tar, int n) {
   int save = danth(*tar, n);
-  addeletr(tar, n, n+1);
+  dadeleter(tar, n, n+1);
   return save;
 }
 
