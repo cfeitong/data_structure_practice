@@ -14,7 +14,7 @@ typedef struct _List {
 } List;
 
 LNode * lcreatn();
-void    ldestro(List lst);
+void    ldestro(List *lst);
 List    lcreat();
 void    linsertn(List *lst, int pos, int val);
 void    lappendn(List *lst, int val);

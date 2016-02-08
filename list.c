@@ -30,11 +30,11 @@ LNode * lnth(List lst, int n) {
   return it;
 }
 
-void  ldestro(List lst) {
-  for (LNode *it = lst.head->next; it != lst.tail; it = it->next) {
+void  ldestro(List *lst) {
+  for (LNode *it = lst->head->next; it != lst->tail; it = it->next) {
     free(it->prev);
   }
-  free(lst.tail);
+  free(lst->tail);
 }
 
 List    lcreat() {

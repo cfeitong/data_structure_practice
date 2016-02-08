@@ -56,7 +56,7 @@ bool double_convertion(const char *s) {
   bool res = !strcmp(s, n);
 
   free(n);
-  ldestro(t);
+  ldestro(&t);
 
   return res;
 }
@@ -69,7 +69,7 @@ bool insertion(const char *s) {
   char *n = list2cstr(t);
   bool res = !strcmp(n, s);
 
-  ldestro(t);
+  ldestro(&t);
   free(n);
 
   return res;
@@ -87,7 +87,7 @@ bool deletion(const char *s) {
   bool res = !strcmp(s, n);
 
   free(n);
-  ldestro(t);
+  ldestro(&t);
 
   return res;
 }
@@ -105,7 +105,7 @@ bool get_element(const char *s) {
   }
 
   free(n);
-  ldestro(t);
+  ldestro(&t);
 
   return res;
 }
