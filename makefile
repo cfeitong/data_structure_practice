@@ -1,10 +1,26 @@
 CC = clang
 FLAG = -Wall -g
 
-test: bin/list.test bin/darray.test
+test: bin/list.test bin/darray.test bin/stack.test bin/queue.test
 	cd bin &&\
 	./list.test &&\
-	./darray.test
+	./darray.test &&\
+	./stack.test &&\
+	./queue.test
+
+bin/queue.o: queue.c queue.h
+	$(CC) $(FLAG) -c queue.c -o bin/queue.o
+
+bin/queue.test: bin/queue.o bin/list.o test/test_queue.c test/test_queue.h
+	$(CC) $(FLAG) -c test/test_queue.c -o bin/test_queue.o
+	$(CC) bin/queue.o bin/list.o bin/test_queue.o -o bin/queue.test
+
+bin/stack.o: stack.c stack.h
+	$(CC) $(FLAG) -c stack.c -o bin/stack.o
+
+bin/stack.test: bin/stack.o bin/list.o test/test_stack.c test/test_stack.h
+	$(CC) $(FLAG) -c test/test_stack.c -o bin/test_stack.o
+	$(CC) bin/stack.o bin/list.o bin/test_stack.o -o bin/stack.test
 
 bin/list.o: list.c list.h
 	$(CC) $(FLAG) -c list.c -o bin/list.o

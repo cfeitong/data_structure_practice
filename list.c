@@ -99,7 +99,7 @@ char  * list2cstr(List lst) {
 List    cstr2list(const char *s) {
   List res = lcreat();
   for (int i = 0; s[i]; i++) {
-    lappend(&res, s[i]);
+    lappendn(&res, s[i]);
   }
   return res;
 }

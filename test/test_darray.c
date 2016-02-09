@@ -16,7 +16,7 @@ int main() {
 
 void test_dynamic_array_init() {
   Darray n = dainit();
-  if (n.size != 0 || n.cap != DAINIT_SIZE) fprintf(stderr, "Test fails on init\n");
+  if (n.size != 0 || n.cap != DAINIT_SIZE) fprintf(stderr, "Darray test fails on init\n");
   dadestro(&n);
 }
 
@@ -39,7 +39,7 @@ void test_dynamic_array_append() {
     }
   }
   if (!ok) {
-    printf("Test fails on darray append.\n");
+    printf("Darray test fails on append.\n");
   }
 }
 
@@ -73,7 +73,7 @@ void test_dynamic_array_delete() {
   }
 
   if (!ok) {
-    printf("Test fails on darray delete.\n");
+    printf("Darray test fails on delete.\n");
   }
 }
 
@@ -94,6 +94,6 @@ void test_dynamic_array_shrink() {
   }
   dadeleter(&n, 0, 195);
   if (n.cap == 128) {
-    printf("Test fails on array shrink.\n");
+    printf("Darray test fails on shrink.\n");
   }
 }

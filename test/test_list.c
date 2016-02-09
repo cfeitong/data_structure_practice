@@ -16,7 +16,7 @@ int main() {
 
 void DO_TEST(bool (*f)(const char *s) , const char *string) {
   if (!f(string)) {
-    fprintf(stderr, "list test fails with %s\n" , string);
+    fprintf(stderr, "List test fails with %s\n" , string);
   }
 }
 
