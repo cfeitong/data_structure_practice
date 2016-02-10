@@ -2,11 +2,18 @@
 #include <assert.h>
 #include "list.h"
 
-static void llinkn(LNode *n1, LNode *n2);
 
-static void llinkn(LNode *n1, LNode *n2) {
+void llinkn(LNode *n1, LNode *n2) {
   n1->next = n2;
   n2->prev = n1;
+}
+
+List    lcopy(List l) {
+  List n = lcreat();
+  for (int i = l.size-1; i >= 0; i--) {
+    linsertn(&n, 0, lnth(l, i)->val);
+  }
+  return n;
 }
 
 LNode * lcreatn() {
@@ -25,7 +32,13 @@ LNode * lnth(List lst, int n) {
     it = lst.head;
   }
   else {
-    for (it = lst.head->next; n; n--, it = it->next);
+    if (n < lst.size/2) {
+      for (it = lst.head->next; n; n--, it = it->next);
+    }
+    else {
+      n = lst.size - n;
+      for (it = lst.tail; n; n--, it = it->prev);
+    }
   }
   return it;
 }

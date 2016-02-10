@@ -13,9 +13,11 @@ typedef struct _List {
   int size;
 } List;
 
+void llinkn(LNode *n1, LNode *n2);
 LNode * lcreatn();
 void    ldestro(List *lst);
 List    lcreat();
+List    lcopy(List l);
 void    linsertn(List *lst, int pos, int val);
 void    lappendn(List *lst, int val);
 void    ldeleter(List *lst, int from, int to);
